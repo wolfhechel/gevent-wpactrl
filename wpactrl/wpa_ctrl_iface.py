@@ -74,7 +74,7 @@ def wpa_ctrl_request(ctrl, cmd, msg_cb=None, reply_len=4096):
     ctrl.s.send(cmd)
 
     while True:
-        rlist, wlist, xlist = select.select([ctrl.s], None, None, 2)
+        rlist, wlist, xlist = select.select([ctrl.s], [], [], 2)
 
         if rlist and (ctrl.s in rlist):
             data = ctrl.s.recv(reply_len)

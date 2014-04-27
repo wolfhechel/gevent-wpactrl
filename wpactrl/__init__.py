@@ -15,7 +15,7 @@ interface access in external programs are at:
     <http://w1.fi/wpa_supplicant/devel/ctrl_iface_page.html>
 '''
 
-import wpa_ctrl
+from . import wpa_ctrl_iface as wpa_ctrl
 
 version = lambda: (1, 0, 1)
 
@@ -39,8 +39,6 @@ class WPACtrl(object):
             self.detach()
 
         wpa_ctrl.wpa_ctrl_close(self.ctrl_iface)
-
-        print 'Closed'
 
     def __del__(self):
         self.close()
