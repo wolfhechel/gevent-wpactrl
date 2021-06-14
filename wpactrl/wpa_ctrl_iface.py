@@ -91,12 +91,12 @@ def wpa_ctrl_request(ctrl, cmd, msg_cb=None, reply_len=4096):
 
 
 def wpa_ctrl_attach_helper(ctrl, attach):
-    ret = wpa_ctrl_request(ctrl, 'ATTACH' if attach else 'DETACH')
+    ret = wpa_ctrl_request(ctrl, b'ATTACH' if attach else b'DETACH')
 
-    if isinstance(ret, basestring):
-        return ret == 'OK\n'
-    else:
-        return ret
+    if ret:
+      return ret == b'OK\n'
+
+    return False
 
 def wpa_ctrl_attach(ctrl):
     '''
